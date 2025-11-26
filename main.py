@@ -1,7 +1,7 @@
 import pygame
 
 from logger import log_state
-from constants import SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_RADIUS
+from constants import SCREEN_HEIGHT, SCREEN_WIDTH, PLAYER_TURN_SPEED
 from player import Player
 
 def main():
@@ -22,10 +22,13 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
-                  
+            
+        dt = clock.tick(60)/1000
+        player.update(dt)
+        
         screen_update(screen, [player,])
 
-        dt = clock.tick(60)/1000
+        
 
 def screen_update(screen, objects_to_draw):
         screen.fill("black")
